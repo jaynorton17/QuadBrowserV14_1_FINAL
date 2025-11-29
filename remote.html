@@ -1,0 +1,47 @@
+
+<!DOCTYPE html><html><head><style>
+html,body{margin:0;padding:0;background:#111;color:#eee;font-family:Arial;}
+#box{padding:10px;display:flex;flex-direction:column;gap:10px;}
+select,input,button{padding:6px;background:#222;color:#eee;border:1px solid #444;}
+button:hover{background:#333;}
+#zoomDisplay{text-align:center;padding:5px;background:#181818;}
+</style></head>
+<body>
+<div id="box">
+  <h3 style="text-align:center;">QuadBrowser V14.1</h3>
+
+  <label>Screens</label>
+  <select id="scr">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4" selected>4</option>
+    <option value="5">5</option>
+  </select>
+  <button id="apply">Apply Layout</button>
+
+  <label>Screen Index</label>
+  <select id="idx"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+
+  <label>URL</label>
+  <input id="url" placeholder="google.com"/>
+  <button id="load">Load URL</button>
+
+  <button id="zin">Zoom +</button>
+  <button id="zout">Zoom -</button>
+  <button id="zreset">Reset Zoom</button>
+  <div id="zoomDisplay">Zoom: 0.50</div>
+</div>
+
+<script>
+const {ipcRenderer}=require("electron");
+
+document.getElementById("apply").onclick=()=>ipcRenderer.send("set-screens-count",parseInt(scr.value));
+document.getElementById("load").onclick=()=>ipcRenderer.send("set-screen-url",{index:parseInt(idx.value),url:url.value});
+document.getElementById("zin").onclick=()=>ipcRenderer.send("zoom-action","in");
+document.getElementById("zout").onclick=()=>ipcRenderer.send("zoom-action","out");
+document.getElementById("zreset").onclick=()=>ipcRenderer.send("zoom-action","reset");
+
+ipcRenderer.on("zoom-updated",(e,v)=>zoomDisplay.textContent="Zoom: "+v);
+</script>
+</body></html>

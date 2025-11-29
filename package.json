@@ -1,0 +1,8 @@
+{
+  "name": "quadbrowser-v14-1-final",
+  "version": "14.1",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --enable-gpu --ignore-gpu-blocklist --enable-webgl --use-gl=swiftshader"
+  }
+}

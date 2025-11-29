@@ -1,0 +1,9 @@
+Package: xclicker
+Version: %VERSION%
+Section: base
+Priority: optional
+Vcs-Git: https://github.com/robiot/rustcat
+Architecture: %ARCH%
+Depends: libx11-6, libxi6
+Maintainer: robiot
+Description: Fast gui autoclicker for linux
