@@ -1,4 +1,6 @@
 
+const path = require('path');
+const os = require('os');
 const { app, BrowserWindow, ipcMain } = require('electron');
 
 app.commandLine.appendSwitch('enable-gpu-rasterization');
@@ -6,6 +8,13 @@ app.commandLine.appendSwitch('enable-zero-copy');
 app.commandLine.appendSwitch('ignore-gpu-blocklist');
 app.commandLine.appendSwitch('use-gl','swiftshader');
 app.commandLine.appendSwitch('enable-webgl');
+// Using the legacy network stack avoids noisy D-Bus lookups for NetworkManager
+// on environments where it is not installed (e.g. minimal containers).
+app.commandLine.appendSwitch('disable-features','NetworkService');
+
+// Point user data at a dedicated, writable directory to prevent service worker
+// storage errors caused by stale or read-only default profiles.
+app.setPath('userData', path.join(os.homedir(), '.config', 'quadbrowser'));
 
 let mainWin, remoteWin;
 
