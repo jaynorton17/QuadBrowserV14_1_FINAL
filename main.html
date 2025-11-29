@@ -1,11 +1,60 @@
 
 <!DOCTYPE html><html><head><style>
-html,body{margin:0;padding:0;height:100%;background:#000;}
+html,body{margin:0;padding:0;height:100%;background:#000;color:#eee;font-family:Arial,sans-serif;}
 #screens{display:grid;width:100%;height:100%;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;}
 .screen{overflow:hidden;}
 webview{width:100%;height:100%;}
+
+#panelToggle{position:absolute;top:8px;left:8px;z-index:10;padding:6px 10px;border:1px solid #444;background:#111;color:#eee;cursor:pointer;}
+#panelToggle:hover{background:#1b1b1b;}
+
+#controlPanel{position:absolute;top:40px;left:10px;width:240px;max-height:calc(100% - 50px);overflow-y:auto;background:rgba(17,17,17,0.95);border:1px solid #333;padding:10px;border-radius:6px;display:none;z-index:10;box-shadow:0 4px 12px rgba(0,0,0,0.6);}
+#controlPanel.open{display:block;}
+#controlPanel h3{margin-top:0;text-align:center;}
+#controlPanel label{display:block;margin-top:10px;margin-bottom:4px;font-size:12px;color:#ccc;}
+#controlPanel select,#controlPanel input,#controlPanel button{width:100%;padding:6px;margin-bottom:6px;border:1px solid #444;background:#222;color:#eee;}
+#controlPanel button:hover{background:#333;}
+.inline-buttons{display:flex;gap:6px;}
+.inline-buttons button{flex:1;}
+#zoomDisplay{text-align:center;padding:6px;background:#181818;border:1px solid #333;border-radius:4px;}
 </style></head>
 <body>
+<button id="panelToggle" aria-label="Toggle control panel">⚙ Controls</button>
+<div id="controlPanel" class="open">
+  <h3>Clicker Tools</h3>
+
+  <label for="scr">Screens</label>
+  <select id="scr">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4" selected>4</option>
+    <option value="5">5</option>
+  </select>
+  <button id="apply">Apply Layout</button>
+
+  <label for="idx">Screen Index</label>
+  <select id="idx"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option></select>
+
+  <label for="url">URL</label>
+  <input id="url" placeholder="google.com" />
+  <button id="load">Load URL</button>
+
+  <label for="cinterval">Click Interval (ms)</label>
+  <input id="cinterval" type="number" value="1000" min="25" />
+  <div class="inline-buttons">
+    <button id="cstart">Start</button>
+    <button id="cstop">Stop</button>
+  </div>
+
+  <div class="inline-buttons">
+    <button id="zin">Zoom +</button>
+    <button id="zout">Zoom -</button>
+    <button id="zreset">Reset</button>
+  </div>
+  <div id="zoomDisplay">Zoom: 0.50</div>
+</div>
+
 <div id="screens">
   <div class="screen"><webview id="s0" src="https://www.google.com" allowpopups></webview></div>
   <div class="screen"><webview id="s1" src="https://www.google.com" allowpopups></webview></div>
@@ -21,10 +70,13 @@ const screens=document.querySelectorAll("webview");
 const frames=[...document.querySelectorAll(".screen")];
 const container=document.getElementById("screens");
 const clickers=new Map();
+const zoomDisplay=document.getElementById("zoomDisplay");
 
 function applyZoom(){
   screens.forEach(v=>{try{v.setZoomFactor(zoom);}catch(e){}});
-  ipcRenderer.send("zoom-updated",zoom.toFixed(2));
+  const z=zoom.toFixed(2);
+  if(zoomDisplay)zoomDisplay.textContent="Zoom: "+z;
+  ipcRenderer.send("zoom-updated",z);
 }
 
 function layout(c){
@@ -50,17 +102,20 @@ function layout(c){
   applyZoom();
 }
 
+function setScreenUrl({index,url}){
+  let u=(url||"").trim();
+  if(!u)return;
+  if(!/^https?:\/\//.test(u))u="https://"+u;
+  const target=document.getElementById("s"+index);
+  if(target)target.src=u;
+}
+
 function stopClicker(i){if(clickers.has(i)){clearInterval(clickers.get(i));clickers.delete(i);}}
 function sendClick(v){if(!v)return;const r=v.getBoundingClientRect();if(!r.width||!r.height)return;const j=Math.max(1,Math.floor(Math.min(r.width,r.height)*0.02));const x=Math.max(1,Math.floor(r.width/2)+Math.floor(Math.random()*(j*2+1))-j);const y=Math.max(1,Math.floor(r.height/2)+Math.floor(Math.random()*(j*2+1))-j);try{v.sendInputEvent({type:"mouseDown",x,y,button:"left",clickCount:1});v.sendInputEvent({type:"mouseUp",x,y,button:"left",clickCount:1});}catch(e){} }
 function startClicker(i,ms){const v=document.getElementById("s"+i);if(!v)return;stopClicker(i);const t=setInterval(()=>sendClick(v),Math.max(25,ms||1000));clickers.set(i,t);}
 
 ipcRenderer.on("set-screens-count",(e,c)=>layout(c));
-ipcRenderer.on("set-screen-url",(e,p)=>{
-  let u=p.url.trim();
-  if(!u)return;
-  if(!/^https?:\/\//.test(u))u="https://"+u;
-  document.getElementById("s"+p.index).src=u;
-});
+ipcRenderer.on("set-screen-url",(e,p)=>setScreenUrl(p));
 ipcRenderer.on("zoom-action",(e,a)=>{
   if(a==="in")zoom+=0.1;
   if(a==="out")zoom=Math.max(0.1,zoom-0.1);
@@ -73,5 +128,28 @@ window.addEventListener("beforeunload",()=>clickers.forEach(c=>clearInterval(c))
 
 layout(4);
 applyZoom();
+
+// Control panel wiring
+const panel=document.getElementById("controlPanel");
+const toggle=document.getElementById("panelToggle");
+if(toggle&&panel){
+  toggle.onclick=()=>panel.classList.toggle("open");
+}
+
+const scr=document.getElementById("scr");
+const idx=document.getElementById("idx");
+const url=document.getElementById("url");
+const cinterval=document.getElementById("cinterval");
+
+document.getElementById("apply").onclick=()=>layout(parseInt(scr.value));
+document.getElementById("load").onclick=()=>setScreenUrl({index:parseInt(idx.value),url:url.value});
+document.getElementById("cstart").onclick=()=>{
+  const v=parseInt(cinterval.value);
+  startClicker(parseInt(idx.value),isNaN(v)?1000:Math.max(25,v));
+};
+document.getElementById("cstop").onclick=()=>stopClicker(parseInt(idx.value));
+document.getElementById("zin").onclick=()=>{zoom+=0.1;applyZoom();};
+document.getElementById("zout").onclick=()=>{zoom=Math.max(0.1,zoom-0.1);applyZoom();};
+document.getElementById("zreset").onclick=()=>{zoom=0.5;applyZoom();};
 </script>
 </body></html>
