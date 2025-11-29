@@ -27,6 +27,11 @@ button:hover{background:#333;}
   <input id="url" placeholder="google.com"/>
   <button id="load">Load URL</button>
 
+  <label>Click Interval (ms)</label>
+  <input id="cinterval" type="number" value="1000" min="25" />
+  <button id="cstart">Start Clicker</button>
+  <button id="cstop">Stop Clicker</button>
+
   <button id="zin">Zoom +</button>
   <button id="zout">Zoom -</button>
   <button id="zreset">Reset Zoom</button>
@@ -38,6 +43,8 @@ const {ipcRenderer}=require("electron");
 
 document.getElementById("apply").onclick=()=>ipcRenderer.send("set-screens-count",parseInt(scr.value));
 document.getElementById("load").onclick=()=>ipcRenderer.send("set-screen-url",{index:parseInt(idx.value),url:url.value});
+document.getElementById("cstart").onclick=()=>{const v=parseInt(cinterval.value);ipcRenderer.send("start-clicker",{index:parseInt(idx.value),interval:isNaN(v)?1000:Math.max(25,v)});};
+document.getElementById("cstop").onclick=()=>ipcRenderer.send("stop-clicker",parseInt(idx.value));
 document.getElementById("zin").onclick=()=>ipcRenderer.send("zoom-action","in");
 document.getElementById("zout").onclick=()=>ipcRenderer.send("zoom-action","out");
 document.getElementById("zreset").onclick=()=>ipcRenderer.send("zoom-action","reset");
