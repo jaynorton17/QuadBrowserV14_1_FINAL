@@ -29,10 +29,17 @@ struct Config
 	gboolean use_repeat;
 	const char *repeat_times;
 
-	/// more options
-	gboolean use_custom_location;
-	const char *custom_x;
-	const char *custom_y;
+	#define MAX_POINTS 50
+
+gboolean use_custom_location;
+
+int point_count;
+
+struct {
+    int x;
+    int y;
+} click_points[MAX_POINTS];
+
 	gboolean use_random_interval;
 	const char *random_interval_ms;
 	gboolean use_hold_time;

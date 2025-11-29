@@ -35,7 +35,7 @@ rule CUSTOM_COMMAND_DEP
  restat = 1
 
 rule REGENERATE_BUILD
- command = /usr/bin/meson --internal regenerate /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build
+ command = /usr/bin/meson --internal regenerate /home/jaynorton17/xclicker /home/jaynorton17/xclicker/build
  description = Regenerating build files.
  generator = 1
 
@@ -149,7 +149,7 @@ build clean: phony meson-internal__clean
 build clean-ctlist: phony meson-internal__clean-ctlist
 
 build meson-internal__clean-ctlist: CUSTOM_COMMAND PHONY
- COMMAND = /usr/bin/meson --internal cleantrees /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/cleantrees.dat
+ COMMAND = /usr/bin/meson --internal cleantrees /home/jaynorton17/xclicker/build/meson-private/cleantrees.dat
  description = Cleaning$ custom$ target$ directories
 
 build meson-internal__clean: CUSTOM_COMMAND PHONY | clean-ctlist

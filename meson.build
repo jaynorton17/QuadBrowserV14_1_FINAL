@@ -1,19 +1,19 @@
-project(
-    'XClicker',
-    'c',
-    license: 'GPL-3.0',
-    default_options: [
-        'warning_level=2'
-    ],
+xclicker_resources = gnome.compile_resources(
+    'xclicker-resources',
+    join_paths(
+        'resources', 'xclicker.gresource.xml'
+    ),
+    source_dir: 'resources'
 )
 
-add_project_arguments(
-    '-Wno-incompatible-pointer-types',
-    language : 'c'
+executable('xclicker',
+    'main.c', 
+    'xclicker-app.c',
+    'config.c',
+    'mainwin.c',
+    'x11api.c',
+    'settings.c',
+    'utils.c',
+    xclicker_resources,
+    dependencies: deps,
 )
-
-
-gnome = import('gnome')
-deps = [dependency('gtk+-3.0'), dependency('x11'), dependency('xi'), dependency('xtst')]
-
-subdir('src')

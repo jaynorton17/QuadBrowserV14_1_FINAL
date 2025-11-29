@@ -1,11 +1,11 @@
-Build started at 2025-11-29T00:57:27.828216
+Build started at 2025-11-27T00:43:34.545981
 Main binary: /usr/bin/python3
 Build Options: 
 Python system: Linux
 The Meson build system
 Version: 1.0.1
-Source dir: /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker
-Build dir: /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build
+Source dir: /home/jaynorton17/xclicker
+Build dir: /home/jaynorton17/xclicker/build
 Build type: native build
 Project name: XClicker
 Project version: undefined
@@ -34,7 +34,7 @@ This program has absolutely no warranty.
 
 linker stderr:
 collect2 version 12.2.0
-/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccRqjths.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
+/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccanplBi.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
 
 Sanity testing C compiler: cc
 Is cross compiler: False.
@@ -45,7 +45,7 @@ Sanity check compile stdout:
 Sanity check compile stderr:
 
 -----
-Running test binary command:  /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/sanitycheckc.exe
+Running test binary command:  /home/jaynorton17/xclicker/build/meson-private/sanitycheckc.exe
 C compiler for the host machine: cc (gcc 12.2.0 "cc (Debian 12.2.0-14+deb12u1) 12.2.0")
 C linker for the host machine: cc ld.bfd 2.40
 -----
@@ -73,7 +73,7 @@ This program has absolutely no warranty.
 
 linker stderr:
 collect2 version 12.2.0
-/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/cclpHPfq.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
+/usr/bin/ld -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccJXcqjC.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
 
 Sanity testing C compiler: cc
 Is cross compiler: False.
@@ -84,7 +84,7 @@ Sanity check compile stdout:
 Sanity check compile stderr:
 
 -----
-Running test binary command:  /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/sanitycheckc.exe
+Running test binary command:  /home/jaynorton17/xclicker/build/meson-private/sanitycheckc.exe
 C compiler for the build machine: cc (gcc 12.2.0 "cc (Debian 12.2.0-14+deb12u1) 12.2.0")
 C linker for the build machine: cc ld.bfd 2.40
 Build machine cpu family: x86_64
@@ -120,8 +120,8 @@ stdout:
 -lgtk-3 -lgdk-3 -lz -lpangocairo-1.0 -lpango-1.0 -lharfbuzz -latk-1.0 -lcairo-gobject -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lgobject-2.0 -lglib-2.0
 -----------
 Running compile:
-Working directory:  /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/tmp1ry9s3rd
-Command line:  cc /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/tmp1ry9s3rd/testfile.c -o /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/tmp1ry9s3rd/output.exe -D_FILE_OFFSET_BITS=64 -O0 
+Working directory:  /home/jaynorton17/xclicker/build/meson-private/tmpum_c37cp
+Command line:  cc /home/jaynorton17/xclicker/build/meson-private/tmpum_c37cp/testfile.c -o /home/jaynorton17/xclicker/build/meson-private/tmpum_c37cp/output.exe -D_FILE_OFFSET_BITS=64 -O0 
 
 Code:
  #include<stdio.h>
@@ -142,8 +142,8 @@ Program stderr:
 
 
 Running compile:
-Working directory:  /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/tmphsspmm05
-Command line:  cc /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/tmphsspmm05/testfile.c -o /mnt/chromeos/MyFiles/Downloads/QuadBrowserV14_1_FINAL/xclicker/build/meson-private/tmphsspmm05/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+Working directory:  /home/jaynorton17/xclicker/build/meson-private/tmpvqh7n5tz
+Command line:  cc /home/jaynorton17/xclicker/build/meson-private/tmpvqh7n5tz/testfile.c -o /home/jaynorton17/xclicker/build/meson-private/tmpvqh7n5tz/output.obj -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
 
 Code:
  
