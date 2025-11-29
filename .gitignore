@@ -1,0 +1,24 @@
+# Build outputs
+*.o
+*.exe
+/build*
+/*.dat
+/meson-*.json
+/meson-log.txt
+/meson_benchmark_setup.dat
+/meson_test_setup.dat
+/compile_commands.json
+/build.ninja
+/coredata.dat
+/install.dat
+/intro-*.json
+/cmd_line.txt
+/AppRun
+/xclicker
+
+# Node artifacts
+/node_modules
+
+# Backup and transient files
+*.swp
+.DS_Store

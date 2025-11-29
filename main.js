@@ -43,3 +43,5 @@ ipcMain.on('set-screens-count',(e,c)=>mainWin.webContents.send('set-screens-coun
 ipcMain.on('set-screen-url',(e,p)=>mainWin.webContents.send('set-screen-url',p));
 ipcMain.on('zoom-action',(e,a)=>mainWin.webContents.send('zoom-action',a));
 ipcMain.on('zoom-updated',(e,v)=>remoteWin.webContents.send('zoom-updated',v));
+ipcMain.on('start-clicker',(e,p)=>mainWin.webContents.send('start-clicker',p));
+ipcMain.on('stop-clicker',(e,i)=>mainWin.webContents.send('stop-clicker',i));
